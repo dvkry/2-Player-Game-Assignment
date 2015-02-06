@@ -5,7 +5,7 @@ class SplashScreen
   def scroll(lines)
     lines.times do
       puts ''
-      sleep(0.01)
+      sleep(0.03)
     end
   end
 
@@ -14,13 +14,13 @@ class SplashScreen
     80.times { puts '' } # move to the bottom of the screen
 
     puts "W-W-W-W-WELCOME".center(80).green
-    scroll(15)
+    scroll(6)
     puts "T-T-T-T-TO".center(80).red
-    scroll(15)
+    scroll(6)
     puts "T-T-T-T-The".center(80).yellow
-    scroll(15)
+    scroll(6)
     puts "G-G-G-G-GAME!!".center(80).blue
-    scroll(15)
+    scroll(6)
   end
 end
 
