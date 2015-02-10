@@ -30,6 +30,14 @@ class Game
       # switch players
       @current_player, @next_player = @next_player, @current_player
 
+      if (@current_player.lives == 0) || (@next_player.lives == 0)
+        begin
+        raise OutOfLivesException 
+      rescue OutOfLivesException => e
+        puts "OutOfLivesException #{e}, Game Over"
+        end
+      
+      end
     end
 
     interface.game_over(@current_player, @next_player) # We know that players were just switched, therefor @current_player must have won
@@ -72,7 +80,19 @@ class Question
     if @expected_answer == interface.ask_user("Answer the folowing: #{@question_str} = ? ").to_i
       return true
     else
+      begin
+        raise IncorrectGuessException
+      rescue IncorrectGuessException => e
+        puts "Wrong, so wrong you got an #{e.message}" 
+      end
       return false
     end
   end
+end
+
+class OutOfLivesException < StandardError
+
+end
+class IncorrectGuessException < StandardError
+
 end
